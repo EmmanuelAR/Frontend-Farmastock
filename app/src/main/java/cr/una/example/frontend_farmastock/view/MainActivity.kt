@@ -36,13 +36,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         drawerLayout.closeDrawer(GravityCompat.START)
         when (item.itemId) {
+            R.id.nav_item_profile-> {
+                setToolbarTitle("Profile")
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, ProfileFragment()).commit()
+            }
             R.id.nav_item_home -> {
                 setToolbarTitle("Inicio")
+//                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, ProfileFragment()).commit()
             }
             R.id.nav_item_medicine -> {
                 setToolbarTitle("Medicinas")
                 supportFragmentManager.beginTransaction()
-                        .add(android.R.id.content,  MedicineFragment()).commit()
+                        .replace(R.id.fragment_container,  MedicineFragment()).commit()
             }
         }
         return true
