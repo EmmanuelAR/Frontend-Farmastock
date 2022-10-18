@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import android.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
@@ -21,9 +22,11 @@ import cr.una.example.frontend_farmastock.viewmodel.StateMedicine
 
 class MedicineMainFragment : Fragment() {
 
+
     // Definition of the binding variable
     private var _binding: FragmentMedicineMainBinding? = null
     private val binding get() = _binding!!
+
 
 
     private val medicineViewModel : MedicineViewModel by activityViewModels {
@@ -83,4 +86,5 @@ class MedicineMainFragment : Fragment() {
         }
     }
 }
+
 
