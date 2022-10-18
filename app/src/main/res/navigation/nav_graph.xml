@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/medicineMainFragment">
+    <fragment
+        android:id="@+id/medicineAddFragment"
+        android:name="cr.una.example.frontend_farmastock.view.MedicineAddFragment"
+        android:label="fragment_medicine_add"
+        tools:layout="@layout/fragment_medicine_add" >
+        <action
+            android:id="@+id/action_medicineAddFragment_to_medicineMainFragment"
+            app:destination="@id/medicineMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/medicineDetailsFragment"
+        android:name="cr.una.example.frontend_farmastock.view.MedicineDetailsFragment"
+        android:label="fragment_medicine_details"
+        tools:layout="@layout/fragment_medicine_details" >
+        <action
+            android:id="@+id/action_medicineDetailsFragment_to_medicineUpdateFragment"
+            app:destination="@id/medicineUpdateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/medicineUpdateFragment"
+        android:name="cr.una.example.frontend_farmastock.view.MedicineUpdateFragment"
+        android:label="fragment_medicine_update"
+        tools:layout="@layout/fragment_medicine_update" >
+        <action
+            android:id="@+id/action_medicineUpdateFragment_to_medicineMainFragment"
+            app:destination="@id/medicineMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/medicineSelectFragment"
+        android:name="cr.una.example.frontend_farmastock.view.MedicineSelectFragment"
+        android:label="fragment_medicine_select"
+        tools:layout="@layout/fragment_medicine_select" >
+        <action
+            android:id="@+id/action_medicineSelectFragment_to_medicineDetailsFragment"
+            app:destination="@id/medicineDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/medicineMainFragment"
+        android:name="cr.una.example.frontend_farmastock.view.MedicineMainFragment"
+        android:label="fragment_medicine_main"
+        tools:layout="@layout/fragment_medicine_main" >
+        <action
+            android:id="@+id/action_medicineMainFragment_to_medicineAddFragment"
+            app:destination="@id/medicineAddFragment" />
+        <action
+            android:id="@+id/action_medicineMainFragment_to_medicineDetailsFragment"
+            app:destination="@id/medicineDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="cr.una.example.frontend_farmastock.view.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

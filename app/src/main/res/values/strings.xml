@@ -18,6 +18,42 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >=5 characters</string>
     <string name="login_failed">Login failed</string>
+    <!-- Strings related to Main Activity -->
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="reminders">Recordatorios</string>
+    <string name="home">Inicio</string>
+    <string name="medicines">Medicinas</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_medicine_page_title">Medicinas</string>
+    <string name="main_medicine_page_button_add">Agregar medicina</string>
+    <string name="form_add_medicine_title">Agregar medicina</string>
+    <string name="form_name_medicina">nombre</string>
+    <string name="form_dose_medicina">dosis</string>
+    <string name="form_quantity_medicina">cantidad</string>
+    <string name="Guardar">Guardar medicina</string>
+    <string name="main_medicine_page_title_select">Seleccionar</string>
+    <string name="name">Nombre</string>
+    <string name="dose">Dosis</string>
+    <string name="quantity">Cantidad</string>
+    <string name="action_delete_medicine">Eliminar</string>
+    <string name="action_update_vehicle">Actualizar</string>
+    <string name="form_update_medicine_title">Actualizar medicina</string>
+    <string name="form_name_update">Nuevo nombre</string>
+    <string name="form_nueva_dosis">Nueva dosis</string>
+    <string name="form_nueva_cantidad">Nueva cantidad</string>
+    <string name="main_medicine_page_name_LABEL">Nombre</string>
+    <string name="form_name">Nombre</string>
+    <string name="main_medicine_dosis">Dosis</string>
+    <string name="main_medicine_dosis_LABEL">Dosis</string>
+    <string name="main_medicine_cantidad_LABEL">Cantidad</string>
+    <string name="main_medicine_cantidad">Cantidad</string>
+    <string name="profile_label">Profile</string>
+    <string name="username_label">Usarname</string>
+    <string name="firstName_label">First Name</string>
+    <string name="lastName_label">Last Name</string>
+    <string name="action_update">Update</string>
+
+
 </resources>
