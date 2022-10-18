@@ -23,4 +23,9 @@
             android:id="@+id/action_addMedicineFragment_to_medicineFragment"
             app:destination="@id/medicineFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="cr.una.example.frontend_farmastock.view.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
