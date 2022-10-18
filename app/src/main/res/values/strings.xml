@@ -43,7 +43,6 @@
     <string name="form_name_update">Nuevo nombre</string>
     <string name="form_nueva_dosis">Nueva dosis</string>
     <string name="form_nueva_cantidad">Nueva cantidad</string>
-    <string name="action_update">Actualizar</string>
     <string name="main_medicine_page_name_LABEL">Nombre</string>
     <string name="form_name">Nombre</string>
     <string name="main_medicine_dosis">Dosis</string>
