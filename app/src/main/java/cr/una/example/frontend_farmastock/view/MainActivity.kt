@@ -49,6 +49,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container,  MedicineFragment()).commit()
             }
+            R.id.nav_item_medicine -> {
+                setToolbarTitle("Medicinas")
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
+                    MedicineMainFragment()).commit()
+            }
         }
         return true
     }
