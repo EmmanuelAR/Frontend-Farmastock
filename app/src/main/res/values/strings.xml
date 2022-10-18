@@ -50,4 +50,10 @@
     <string name="main_medicine_dosis_LABEL">Dosis</string>
     <string name="main_medicine_cantidad_LABEL">Cantidad</string>
     <string name="main_medicine_cantidad">Cantidad</string>
+    <string name="profile_label">Profile</string>
+    <string name="username_label">Usarname</string>
+    <string name="firstName_label">First Name</string>
+    <string name="lastName_label">Last Name</string>
+    <string name="action_update">Update</string>
+
 </resources>
