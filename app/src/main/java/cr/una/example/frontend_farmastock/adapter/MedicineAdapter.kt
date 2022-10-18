@@ -40,7 +40,7 @@ Filterable{
             val bundle = bundleOf(MEDICINE_ID to medicineFilterList[position].id.toString())
 
             holder.itemView.findNavController().navigate(
-                R.id.action_medicineMainFragment2_to_medicineDetailsFragment, bundle
+                R.id.action_medicineMainFragment_to_medicineDetailsFragment, bundle
             )
         }
 

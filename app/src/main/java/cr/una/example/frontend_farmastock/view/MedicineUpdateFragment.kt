@@ -87,7 +87,7 @@ class MedicineUpdateFragment : Fragment() {
                         // TODO: If you need do something in error
                     }
                     is StateMedicine.Success -> {
-                        findNavController().navigate(R.id.action_medicineUpdateFragment_to_medicineMainFragment2)
+                        findNavController().navigate(R.id.action_medicineUpdateFragment_to_medicineMainFragment)
                     }
                     else -> {
                         // TODO: Not state loaded

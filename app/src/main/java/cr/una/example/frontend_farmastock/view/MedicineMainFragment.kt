@@ -79,7 +79,7 @@ class MedicineMainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentMedicineMainBinding.bind(view)
         binding.buttonMainAddVehicle.setOnClickListener{
-            Navigation.findNavController(view).navigate(R.id.action_medicineMainFragment2_to_medicineAddFragment)
+            Navigation.findNavController(view).navigate(R.id.action_medicineMainFragment_to_medicineAddFragment)
         }
     }
 }

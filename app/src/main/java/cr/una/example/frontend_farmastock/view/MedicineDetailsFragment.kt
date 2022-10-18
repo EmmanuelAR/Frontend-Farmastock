@@ -68,7 +68,7 @@ class MedicineDetailsFragment : Fragment() {
                 .setPositiveButton("YES") { dialog, _ ->
                     medicineViewModel.deleteMedicineById(id.toLong())
 
-                    findNavController().navigate(R.id.medicineMainFragment2)
+                    findNavController().navigate(R.id.medicineMainFragment)
 
                     dialog.dismiss()
 

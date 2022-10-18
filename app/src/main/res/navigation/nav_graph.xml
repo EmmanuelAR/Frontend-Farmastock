@@ -3,26 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/medicineMainFragment2">
-    <fragment
-        android:id="@+id/medicineMainFragment2"
-        android:name="cr.una.example.frontend_farmastock.view.MedicineMainFragment"
-        android:label="MedicineMainFragment" >
-        <action
-            android:id="@+id/action_medicineMainFragment2_to_medicineAddFragment"
-            app:destination="@id/medicineAddFragment" />
-        <action
-            android:id="@+id/action_medicineMainFragment2_to_medicineDetailsFragment"
-            app:destination="@id/medicineDetailsFragment" />
-    </fragment>
+    app:startDestination="@id/medicineMainFragment">
     <fragment
         android:id="@+id/medicineAddFragment"
         android:name="cr.una.example.frontend_farmastock.view.MedicineAddFragment"
         android:label="fragment_medicine_add"
         tools:layout="@layout/fragment_medicine_add" >
         <action
-            android:id="@+id/action_medicineAddFragment_to_medicineMainFragment2"
-            app:destination="@id/medicineMainFragment2" />
+            android:id="@+id/action_medicineAddFragment_to_medicineMainFragment"
+            app:destination="@id/medicineMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/medicineDetailsFragment"
@@ -39,8 +28,8 @@
         android:label="fragment_medicine_update"
         tools:layout="@layout/fragment_medicine_update" >
         <action
-            android:id="@+id/action_medicineUpdateFragment_to_medicineMainFragment2"
-            app:destination="@id/medicineMainFragment2" />
+            android:id="@+id/action_medicineUpdateFragment_to_medicineMainFragment"
+            app:destination="@id/medicineMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/medicineSelectFragment"
@@ -49,6 +38,18 @@
         tools:layout="@layout/fragment_medicine_select" >
         <action
             android:id="@+id/action_medicineSelectFragment_to_medicineDetailsFragment"
+            app:destination="@id/medicineDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/medicineMainFragment"
+        android:name="cr.una.example.frontend_farmastock.view.MedicineMainFragment"
+        android:label="fragment_medicine_main"
+        tools:layout="@layout/fragment_medicine_main" >
+        <action
+            android:id="@+id/action_medicineMainFragment_to_medicineAddFragment"
+            app:destination="@id/medicineAddFragment" />
+        <action
+            android:id="@+id/action_medicineMainFragment_to_medicineDetailsFragment"
             app:destination="@id/medicineDetailsFragment" />
     </fragment>
 </navigation>
