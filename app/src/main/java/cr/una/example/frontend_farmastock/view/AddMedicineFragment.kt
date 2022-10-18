@@ -45,7 +45,8 @@ class AddMedicineFragment : Fragment() {
                     )
             )
 
-            findNavController().navigate(R.id.action_addMedicineFragment_to_medicineFragment)
+      //      findNavController().navigate(R.id.action_addMedicineFragment_to_medicineFragment)
+
         }
         // Inflate the layout for this fragment
         return binding.root

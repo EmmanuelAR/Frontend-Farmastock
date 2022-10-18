@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cr.una.example.frontend_farmastock.R
@@ -18,9 +16,11 @@ import cr.una.example.frontend_farmastock.utils.MyApplication
 import cr.una.example.frontend_farmastock.viewmodel.MedicineViewModel
 import cr.una.example.frontend_farmastock.viewmodel.MedicineViewModelFactory
 import cr.una.example.frontend_farmastock.viewmodel.StateMedicine
+import kotlinx.android.synthetic.main.fragment_add_medicine.view.*
+import kotlinx.android.synthetic.main.fragment_medicines_list.view.*
 
 
-class MedicineFragment : Fragment() {
+class MedicineFragment : Fragment(), MedicineRecyclerViewInterface {
 
     private var _binding: FragmentMedicinesListBinding? = null
     private val binding get() = _binding!!
@@ -43,7 +43,6 @@ class MedicineFragment : Fragment() {
 
         _binding = FragmentMedicinesListBinding.inflate(inflater, container, false)
 
-
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -51,7 +50,7 @@ class MedicineFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentMedicinesListBinding.bind(view)
-        binding.button.setOnClickListener{
+        binding.addMedicineBtn.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_medicineFragment_to_addMedicineFragment)
         }
     }
@@ -95,6 +94,10 @@ class MedicineFragment : Fragment() {
             recylcerViewMedicinesList.layoutManager = LinearLayoutManager(view!!.context)
         }
 
+
+    }
+
+    override fun onItemClick(position: Int) {
 
     }
 
