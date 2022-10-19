@@ -1,18 +1,20 @@
 package cr.una.example.frontend_farmastock.viewmodel
-
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import cr.una.example.frontend_farmastock.model.UserRequest
-import cr.una.example.frontend_farmastock.model.UserResponse
+import cr.una.example.frontend_farmastock.model.*
 import cr.una.example.frontend_farmastock.repository.UserRepository
+import cr.una.example.frontend_farmastock.service.UserService
 import kotlinx.coroutines.*
+import java.net.SocketTimeoutException
 
 sealed class StateUser {
     object Loading : StateUser()
     data class Success(val user: UserResponse?) : StateUser()
     data class SuccessDelete(val deleted: Boolean?) : StateUser()
-    data class SuccessList(val userList: List<UserRequest>?) : StateUser()
+    data class SuccessList(val userList: List<UserResponse>?) : StateUser()
     data class Error(val message: String) : StateUser()
 }
 
@@ -23,6 +25,7 @@ class UserViewModel constructor(
     // this is just a way to keep the mutable LiveData private, so it can't be updated
     private val _state = MutableLiveData<StateUser>()
     val state: LiveData<StateUser> get() = _state
+
 
     private var job: Job? = null
     private val errorMessage = MutableLiveData<String>()
@@ -92,21 +95,20 @@ class UserViewModel constructor(
     }
 
     fun createUser(userRequest: UserRequest) {
-        _state.value = StateUser.Loading
-        job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            loading.postValue(true)
-            val response = userRepository.createUser(userRequest)
-            withContext(Dispatchers.Main) {
-                // if you're using postValue I don't think you need to switch to Dispatchers.Main?
-                _state.postValue(
-                    // when you get a response, the state is now either Success or Error
-                    (if (response.isSuccessful) {
-                        StateUser.Success(response.body() as UserResponse)
-                    } else {
-                        StateUser.Error("Error : ${response.message()} ")
-                        onError("Error : ${response.message()}")
-                    }) as StateUser?
-                )
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val call = UserService.Companion.getInstance().createUser(userRequest)
+                val logged = call.body()
+                if (call.isSuccessful) {
+
+
+                } else {
+                    withContext(Dispatchers.Main) {
+
+                    }
+                }
+            } catch (e: SocketTimeoutException) {
+                Log.d("xd", "mamado")
             }
         }
     }

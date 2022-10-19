@@ -115,6 +115,9 @@ class LoginActivity : AppCompatActivity() {
                     )
                 )
             }
+            binding.rgtHere.setOnClickListener{
+                goToRegisterActivity()
+            }
         }
 
     }
@@ -122,6 +125,13 @@ class LoginActivity : AppCompatActivity() {
     /**
      * Success login to redirect the app to the next Screen
      */
+
+    private fun goToRegisterActivity(){
+        finish()
+        // Initiate successful logged in experience
+        val intent = Intent(this,RegisterActivity::class.java)
+        startActivity(intent)
+    }
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
         val username = model.username

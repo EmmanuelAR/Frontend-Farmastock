@@ -1,7 +1,7 @@
 package cr.una.example.frontend_farmastock.repository
-
 import cr.una.example.frontend_farmastock.model.UserRequest
 import cr.una.example.frontend_farmastock.service.UserService
+
 
 class UserRepository constructor(
     private val userService: UserService
