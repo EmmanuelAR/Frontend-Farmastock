@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setupWithNavController(navController)
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.homeFragment,R.id.medicineMainFragment)
+            setOf(R.id.profileFragment,R.id.homeFragment,R.id.medicineMainFragment)
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
 
