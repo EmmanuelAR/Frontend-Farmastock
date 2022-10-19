@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import android.widget.SearchView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -82,7 +83,8 @@ class MedicineMainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentMedicineMainBinding.bind(view)
         binding.buttonMainAddVehicle.setOnClickListener{
-            Navigation.findNavController(view).navigate(R.id.action_medicineMainFragment_to_medicineAddFragment)
+
+            Navigation.findNavController(view).navigate(R.id.action_medicineMainFragment_to_medicineAddFragment, bundleOf(MedicineAdapter.MEDICINE_ID to id))
         }
     }
 }

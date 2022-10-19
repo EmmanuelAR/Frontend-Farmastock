@@ -33,6 +33,7 @@ class MedicineDetailsFragment : Fragment() {
 
         val medicineId: String = arguments?.getString(MEDICINE_ID) ?: "0"
 
+        medicineViewModel.getMedicine(medicineId.toLong())
         // Observer method to bind data of task into text views
         medicineViewModel.state.observe(viewLifecycleOwner) { state ->
             // this lets us avoid repeating 'binding.frameNews' before everything
@@ -48,8 +49,8 @@ class MedicineDetailsFragment : Fragment() {
                     }
                     is StateMedicine.Success -> {
                         state.medicine?.let {
-                            binding.name.text = it.name.toString()
-                            binding.dose.text = it.dose.toString()
+                            binding.txtMedicineName.text = it.name.toString()
+                            binding.txtMedicineDose.text = it.dose.toString()
                             binding.txtQuantity.text = it.quantity.toString()
                         }
                     }
@@ -66,7 +67,7 @@ class MedicineDetailsFragment : Fragment() {
                 // if the dialog is cancelable
                 .setCancelable(true)
                 .setPositiveButton("YES") { dialog, _ ->
-                    medicineViewModel.deleteMedicineById(id.toLong())
+                    medicineViewModel.deleteMedicineById(medicineId.toLong())
 
                     findNavController().navigate(R.id.medicineMainFragment)
 
@@ -88,7 +89,6 @@ class MedicineDetailsFragment : Fragment() {
             findNavController().navigate(R.id.action_medicineDetailsFragment_to_medicineUpdateFragment, bundle)
         }
 
-        medicineViewModel.getMedicine(id.toLong())
         // Inflate the layout for this fragment
         return binding.root
 
