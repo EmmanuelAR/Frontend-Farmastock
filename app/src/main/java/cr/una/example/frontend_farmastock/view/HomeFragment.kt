@@ -1,20 +1,20 @@
 package cr.una.example.frontend_farmastock.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import cr.una.example.frontend_farmastock.R
-import cr.una.example.frontend_farmastock.model.UserResponse
 import cr.una.example.frontend_farmastock.databinding.FragmentHomeBinding
+import cr.una.example.frontend_farmastock.model.UserResponse
 import cr.una.example.frontend_farmastock.utils.MyApplication
 import cr.una.example.frontend_farmastock.viewmodel.StateUser
 import cr.una.example.frontend_farmastock.viewmodel.UserViewModel
 import cr.una.example.frontend_farmastock.viewmodel.UserViewModelFactory
+import java.time.LocalTime
 import java.util.*
 
 
@@ -64,15 +64,16 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-        val currentHour = Calendar.getInstance().get(Calendar.HOUR)
-        val am_pm = Calendar.getInstance().get(Calendar.AM_PM)
-        if(currentHour in 1..11 && am_pm == Calendar.AM){
+
+        val currentHour = LocalTime.now().hour
+
+        if(currentHour in 0..11){
             binding.timeImage.setImageResource(R.drawable.ic_good_morning_foreground)
             binding.timeText.setText("Good Morning!")
-        }else if(currentHour in 12..5 && am_pm == Calendar.PM){
-            binding.timeImage.setImageResource(R.drawable.ic_good_morning_foreground)
+        }else if(currentHour in 12..17){
+            binding.timeImage.setImageResource(R.drawable.ic_good_afternoon_foreground)
             binding.timeText.setText("Good Afternoon!")
-        }else if(currentHour in 6..11 && am_pm == Calendar.PM){
+        }else{
             binding.timeImage.setImageResource(R.drawable.ic_good_evening_foreground)
             binding.timeText.setText("Good Evening!")
         }
