@@ -69,10 +69,10 @@ class HomeFragment : Fragment() {
 
         val currentHour = LocalTime.now().hour
 
-        if(currentHour in 0..11){
+        if(currentHour in 0..12){
             binding.timeImage.setImageResource(R.drawable.ic_good_morning_foreground)
             binding.timeText.setText("Good Morning!")
-        }else if(currentHour in 12..17){
+        }else if(currentHour in 12..18){
             binding.timeImage.setImageResource(R.drawable.ic_good_afternoon_foreground)
             binding.timeText.setText("Good Afternoon!")
         }else{

@@ -45,12 +45,12 @@ class ProfileFragment : Fragment() {
                     // just checking equality because Loading is a -singleton object instance-
                     StateUser.Loading -> {
                         // TODO: If you need do something in loading
-                        Toast.makeText(getActivity(), "Updating User Profile ...", Toast.LENGTH_SHORT).show();
+
                     }
                     // Error and Success are both -classes- so we need to check their type with 'is'
                     is StateUser.Error -> {
                         // TODO: If you need do something in error
-                        Toast.makeText(getActivity(), "Oops! Something went wrong, User Profile not Updated!", Toast.LENGTH_SHORT).show();
+
                     }
                     is StateUser.Success -> {
                         state.user?.let {
@@ -59,7 +59,7 @@ class ProfileFragment : Fragment() {
                             binding.formProfileFirst.setText(it.firstName)
                             binding.formProfileLast.setText(it.lastName)
                         }
-                        Toast.makeText(getActivity(), "User Profile Updated Successfully!", Toast.LENGTH_SHORT).show();
+
                     }
                     else -> {
                         // TODO: Not state loaded
@@ -83,13 +83,16 @@ class ProfileFragment : Fragment() {
                     // just checking equality because Loading is a -singleton object instance-
                     StateUser.Loading -> {
                         // TODO: If you need do something in loading
+                        Toast.makeText(getActivity(), "Updating User Profile ...", Toast.LENGTH_SHORT).show();
                     }
                     // Error and Success are both -classes- so we need to check their type with 'is'
                     is StateUser.Error -> {
                         // TODO: If you need do something in error
+                        Toast.makeText(getActivity(), "Oops! Something went wrong, User Profile not Updated!", Toast.LENGTH_SHORT).show();
                     }
                     is StateUser.Success -> {
 //                        findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
+                        Toast.makeText(getActivity(), "User Profile Updated Successfully!", Toast.LENGTH_SHORT).show();
                     }
                     else -> {
                         // TODO: Not state loaded
