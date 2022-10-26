@@ -56,8 +56,9 @@
     <string name="action_update">Update</string>
     <string name="main_remainder_page_title">Recordatorios</string>
     <string name="main_remainder_page_button_add">Agregar recordatorio</string>
-
-
-
+    <string name="item_remainder_desc_label">Description</string>
+    <string name="item_remainder_desc_value"></string>
+    <string name="item_remainder_date_label">Date-Time</string>
+    <string name="item_remainder_date_value"></string>
 
 </resources>
