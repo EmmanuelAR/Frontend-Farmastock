@@ -7,12 +7,22 @@
         android:title="Profile"/>
 
     <item
+        android:id="@+id/medicineMainFragment"
+        android:icon="@drawable/ic_medicine_this_foreground"
+        android:title="Medicine"/>
+
+    <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home_this_foreground"
         android:title="Home"/>
 
     <item
-        android:id="@+id/medicineMainFragment"
-        android:icon="@drawable/ic_medicine_this_foreground"
+        android:id="@+id/reminMainFragment"
+        android:icon="@drawable/ic_remider_foreground"
         android:title="Medicine"/>
+
+    <item
+        android:id="@+id/aboutFragment"
+        android:icon="@drawable/ic_about_foreground"
+        android:title="About"/>
 </menu>
