@@ -57,7 +57,8 @@ class HomeFragment : Fragment() {
                     is StateUser.Success -> {
                         state.user?.let {
                             userResponse = it
-                            binding.UsernameText.setText("Welcome Back "+ it.firstName+"!")
+                            binding.UsernameText.setText("Welcome Back "+ it.firstName +"!").toString()
+
                         }
                     }
                     else -> {
