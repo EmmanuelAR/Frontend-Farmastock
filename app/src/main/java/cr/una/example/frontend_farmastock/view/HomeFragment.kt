@@ -72,7 +72,7 @@ class HomeFragment : Fragment() {
         if(currentHour in 0..12){
             binding.timeImage.setImageResource(R.drawable.ic_good_morning_foreground)
             binding.timeText.setText("Good Morning!")
-        }else if(currentHour in 12..18){
+        }else if(currentHour in 13..17){
             binding.timeImage.setImageResource(R.drawable.ic_good_afternoon_foreground)
             binding.timeText.setText("Good Afternoon!")
         }else{
