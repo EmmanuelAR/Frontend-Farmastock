@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import cr.una.example.frontend_farmastock.R
@@ -24,6 +25,7 @@ class HomeFragment : Fragment() {
     // Definition of the binding variable
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private var dark = false
     private val userViewModel: UserViewModel by activityViewModels{
         UserViewModelFactory()
     }
@@ -76,6 +78,15 @@ class HomeFragment : Fragment() {
         }else{
             binding.timeImage.setImageResource(R.drawable.ic_good_evening_foreground)
             binding.timeText.setText("Good Evening!")
+        }
+
+        binding.timeImage.setOnClickListener {
+            if (dark) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+            dark = !dark
         }
 
         return binding.root

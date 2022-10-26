@@ -7,16 +7,22 @@
     android:orientation="vertical"
     tools:context="view.HomeFragment">
 
-    <FrameLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="148dp"
-        android:background="#EBF2F3">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingVertical="25dp">
 
             <ImageView
                 android:id="@+id/time_Image"
@@ -46,7 +52,7 @@
             </LinearLayout>
 
         </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-    </FrameLayout>
 </LinearLayout>
 
