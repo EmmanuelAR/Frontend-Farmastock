@@ -61,4 +61,9 @@
         android:id="@+id/homeFragment"
         android:name="cr.una.example.frontend_farmastock.view.HomeFragment"
         android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/reminderMainFragment"
+        android:name="cr.una.example.frontend_farmastock.view.ReminderMainFragment"
+        android:label="fragment_reminder_main"
+        tools:layout="@layout/fragment_reminder_main" />
 </navigation>

@@ -17,9 +17,9 @@
         android:title="Home"/>
 
     <item
-        android:id="@+id/reminMainFragment"
+        android:id="@+id/reminderMainFragment"
         android:icon="@drawable/ic_remider_foreground"
-        android:title="Medicine"/>
+        android:title="Recordatorios"/>
 
     <item
         android:id="@+id/aboutFragment"
