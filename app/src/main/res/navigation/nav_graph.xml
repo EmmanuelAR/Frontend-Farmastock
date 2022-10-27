@@ -65,5 +65,14 @@
         android:id="@+id/reminderMainFragment"
         android:name="cr.una.example.frontend_farmastock.view.ReminderMainFragment"
         android:label="fragment_reminder_main"
-        tools:layout="@layout/fragment_reminder_main" />
+        tools:layout="@layout/fragment_reminder_main" >
+        <action
+            android:id="@+id/action_reminderMainFragment_to_reminderDetailsFragment"
+            app:destination="@id/reminderDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reminderDetailsFragment"
+        android:name="cr.una.example.frontend_farmastock.view.ReminderDetailsFragment"
+        android:label="fragment_reminder_details"
+        tools:layout="@layout/fragment_reminder_details" />
 </navigation>

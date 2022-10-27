@@ -35,7 +35,7 @@
     <string name="Guardar">Guardar medicina</string>
     <string name="main_medicine_page_title_select">Seleccionar</string>
     <string name="name">Nombre</string>
-    <string name="dose">Dosis</string>
+    <string name="dose">Dose</string>
     <string name="quantity">Cantidad</string>
     <string name="action_delete_medicine">Eliminar</string>
     <string name="action_update_vehicle">Actualizar</string>
@@ -62,5 +62,8 @@
     <string name="item_remainder_date_value"></string>
     <string name="item_remainder_medicine_label">Medicine</string>
     <string name="item_remainder_medicine_value"></string>
+    <string name="fecha_y_hora">Date-time</string>
+    <string name="descripci_n">Description</string>
+    <string name="medicine_name">Medicine</string>
 
 </resources>

@@ -39,9 +39,9 @@ class ReminderAdapter: RecyclerView.Adapter<ReminderAdapter.MainViewHolder>(),
         holder.itemView.setOnClickListener() {
             val bundle = bundleOf(REMINDER_ID to reminderFilterList[position].id.toString())
 
-//            holder.itemView.findNavController().navigate(
-////                R.id.action_reminderMainFragment_to_reminderDetailsFragment, bundle
-//            )
+            holder.itemView.findNavController().navigate(
+                R.id.action_reminderMainFragment_to_reminderDetailsFragment, bundle
+            )
         }
 
     }
