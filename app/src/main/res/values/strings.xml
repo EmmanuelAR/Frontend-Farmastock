@@ -60,5 +60,7 @@
     <string name="item_remainder_desc_value"></string>
     <string name="item_remainder_date_label">Date-Time</string>
     <string name="item_remainder_date_value"></string>
+    <string name="item_remainder_medicine_label">Medicine</string>
+    <string name="item_remainder_medicine_value"></string>
 
 </resources>
