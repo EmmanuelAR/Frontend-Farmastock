@@ -34,7 +34,7 @@ class ReminderAdapter: RecyclerView.Adapter<ReminderAdapter.MainViewHolder>(),
         val date = (reminder.createDate.toString()).reversed().substringAfter(':').reversed()
         holder.binding.DescriptionValue.text = reminder.description
         holder.binding.DateTimeValue.text = date
-        holder.binding.DescriptionValue.text = reminder.medicine?.name
+        holder.binding.MedicineValue.text = reminder.medicine?.name
 
         holder.itemView.setOnClickListener() {
             val bundle = bundleOf(REMINDER_ID to reminderFilterList[position].id.toString())
