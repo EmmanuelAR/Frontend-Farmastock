@@ -205,14 +205,6 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:paddingHorizontal="50dp"
-            android:text="Cancel" />
-
-        <Button
             android:id="@+id/button2"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
