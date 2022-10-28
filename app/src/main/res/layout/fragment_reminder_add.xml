@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:orientation="vertical"
+    tools:context=".view.ReminderAddFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TimePicker
+            android:id="@+id/timePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:timePickerMode="spinner" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal"
+                    android:paddingVertical="10dp">
+
+                    <TextView
+                        android:id="@+id/Sunday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="S"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="10dp"
+                        android:shadowRadius="@dimen/material_emphasis_high_type"
+                        android:textColorHint="#D63434" />
+
+                    <TextView
+                        android:id="@+id/Monday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="M"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="10dp"
+                        android:shadowRadius="@dimen/material_emphasis_high_type" />
+
+                    <TextView
+                        android:id="@+id/Tuesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="T"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="10dp"
+                        android:shadowRadius="@dimen/material_emphasis_high_type" />
+
+                    <TextView
+                        android:id="@+id/Wednesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="W"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="10dp"
+                        android:shadowRadius="@dimen/material_emphasis_high_type" />
+
+                    <TextView
+                        android:id="@+id/Thursday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="T"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="10dp"
+                        android:shadowRadius="@dimen/material_emphasis_high_type" />
+
+                    <TextView
+                        android:id="@+id/Friday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="F"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="10dp"
+                        android:shadowRadius="@dimen/material_emphasis_high_type" />
+
+                    <TextView
+                        android:id="@+id/Saturday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="S"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="10dp"
+                        android:shadowRadius="@dimen/material_emphasis_high_type" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingVertical="10dp">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="330dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="Alarm Description Empty" />
+
+                    <ImageView
+                        android:id="@+id/calendar_Picker"
+                        android:layout_width="31dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_calendar_black_foreground" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="10dp">
+
+                    <EditText
+                        android:id="@+id/AddReminderDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="5dp"
+                        android:ems="10"
+                        android:hint="@string/descripci_n"
+                        android:inputType="textPersonName"
+                        android:minHeight="48dp"
+                        android:padding="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingVertical="10dp">
+
+                    <TextView
+                        android:id="@+id/client_select_info"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="No medicine selected" />
+
+                    <Button
+                        android:id="@+id/button_pick_client"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:text="Select a Medicine" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:paddingHorizontal="50dp"
+            android:text="Cancel" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:paddingHorizontal="50dp"
+            android:text="Save" />
+    </LinearLayout>
+
+</LinearLayout>
