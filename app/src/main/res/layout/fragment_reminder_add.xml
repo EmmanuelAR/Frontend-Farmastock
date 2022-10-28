@@ -136,7 +136,7 @@
                         android:text="Alarm Description Empty" />
 
                     <ImageView
-                        android:id="@+id/imageView2"
+                        android:id="@+id/calendar_Picker"
                         android:layout_width="31dp"
                         android:layout_height="24dp"
                         android:layout_weight="1"
@@ -189,6 +189,7 @@
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
+
     </LinearLayout>
 
     <LinearLayout

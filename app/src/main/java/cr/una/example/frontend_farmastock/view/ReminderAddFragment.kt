@@ -1,11 +1,22 @@
 package cr.una.example.frontend_farmastock.view
 
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
+import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import cr.una.example.frontend_farmastock.R
+import cr.una.example.frontend_farmastock.databinding.FragmentReminderAddBinding
+import cr.una.example.frontend_farmastock.model.ReminderRequest
+import cr.una.example.frontend_farmastock.viewmodel.ReminderViewModel
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,43 +29,60 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class ReminderAddFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    // Definition of the binding variable
+    private var _binding: FragmentReminderAddBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    // View model
+    private val reminderViewModel: ReminderViewModel by activityViewModels()
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        _binding = FragmentReminderAddBinding.inflate(inflater, container, false)
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reminder_add, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ReminderAddFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ReminderAddFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentReminderAddBinding.bind(view)
+        binding.calendarPicker.setOnClickListener {
+
+//            reminderViewModel.createReminder(
+//                ReminderRequest(
+//                    id =  8,
+//                    name = binding.formName.text.toString(),
+//                    dose = Integer.parseInt(binding.formDose.text.toString()),
+//                    quantity =  Integer.parseInt(binding.formQuantity.text.toString())
+//
+//                )
+//            )
+//
+//            Navigation.findNavController(view).navigate(R.id.action_reminderAddFragment_to_reminderMainFragment)
+        }
+        binding.calendarPicker.setOnClickListener {
+            val datePicker = MaterialDatePicker.Builder.datePicker().build()
+            datePicker.show(parentFragmentManager, "DatePicker")
+
+
+            // Setting up the event for when ok is clicked
+            datePicker.addOnPositiveButtonClickListener {
+                // formatting date in dd-mm-yyyy format.
+                val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
+                val date = dateFormatter.format(Date(it))
+
+
             }
+        }
+
     }
+
 }
+
