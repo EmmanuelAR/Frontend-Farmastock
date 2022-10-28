@@ -69,7 +69,8 @@
                         android:hint="M"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp"
-                        android:shadowRadius="@dimen/material_emphasis_high_type" />
+                        android:shadowRadius="@dimen/material_emphasis_high_type"
+                        android:textColorHint="#d9d9d9" />
 
                     <TextView
                         android:id="@+id/Tuesday"
@@ -78,7 +79,8 @@
                         android:hint="T"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp"
-                        android:shadowRadius="@dimen/material_emphasis_high_type" />
+                        android:shadowRadius="@dimen/material_emphasis_high_type"
+                        android:textColorHint="#d9d9d9" />
 
                     <TextView
                         android:id="@+id/Wednesday"
@@ -87,7 +89,8 @@
                         android:hint="W"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp"
-                        android:shadowRadius="@dimen/material_emphasis_high_type" />
+                        android:shadowRadius="@dimen/material_emphasis_high_type"
+                        android:textColorHint="#d9d9d9" />
 
                     <TextView
                         android:id="@+id/Thursday"
@@ -96,7 +99,8 @@
                         android:hint="T"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp"
-                        android:shadowRadius="@dimen/material_emphasis_high_type" />
+                        android:shadowRadius="@dimen/material_emphasis_high_type"
+                        android:textColorHint="#d9d9d9" />
 
                     <TextView
                         android:id="@+id/Friday"
@@ -105,7 +109,8 @@
                         android:hint="F"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp"
-                        android:shadowRadius="@dimen/material_emphasis_high_type" />
+                        android:shadowRadius="@dimen/material_emphasis_high_type"
+                        android:textColorHint="#d9d9d9" />
 
                     <TextView
                         android:id="@+id/Saturday"
@@ -114,7 +119,8 @@
                         android:hint="S"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp"
-                        android:shadowRadius="@dimen/material_emphasis_high_type" />
+                        android:shadowRadius="@dimen/material_emphasis_high_type"
+                        android:textColorHint="#d9d9d9" />
 
                 </LinearLayout>
 
@@ -128,12 +134,12 @@
                     android:paddingVertical="10dp">
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/AlarmDescription"
                         android:layout_width="330dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="10dp"
-                        android:text="Alarm Description Empty" />
+                        android:text="Set an Alarm" />
 
                     <ImageView
                         android:id="@+id/calendar_Picker"
