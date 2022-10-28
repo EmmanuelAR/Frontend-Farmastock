@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue_farmastock">#1C73C2</color>
+    <color name="hint_red">#CD5C5C</color>
+    <color name="hint_default">#808080</color>
 </resources>
