@@ -69,10 +69,18 @@
         <action
             android:id="@+id/action_reminderMainFragment_to_reminderDetailsFragment"
             app:destination="@id/reminderDetailsFragment" />
+        <action
+            android:id="@+id/action_reminderMainFragment_to_reminderAddFragment"
+            app:destination="@id/reminderAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/reminderDetailsFragment"
         android:name="cr.una.example.frontend_farmastock.view.ReminderDetailsFragment"
         android:label="fragment_reminder_details"
         tools:layout="@layout/fragment_reminder_details" />
+    <fragment
+        android:id="@+id/reminderAddFragment"
+        android:name="cr.una.example.frontend_farmastock.view.ReminderAddFragment"
+        android:label="fragment_reminder_add"
+        tools:layout="@layout/fragment_reminder_add" />
 </navigation>

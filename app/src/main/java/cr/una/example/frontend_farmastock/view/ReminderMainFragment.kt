@@ -76,7 +76,7 @@ class ReminderMainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentReminderMainBinding.bind(view)
         binding.buttonMainAddReminder.setOnClickListener{
-//            Navigation.findNavController(view).navigate(R.id.action_reminderMainFragment_to_reminderAddFragment)
+            Navigation.findNavController(view).navigate(R.id.action_reminderMainFragment_to_reminderAddFragment)
         }
     }
 }
