@@ -41,7 +41,7 @@ class MedicineSelectAdapter : RecyclerView.Adapter<MedicineSelectAdapter.MainVie
             val bundle = bundleOf(MEDICINE_ID to medicineFilterList[position].id.toString())
 
             holder.itemView.findNavController().navigate(
-                R.id.action_medicineSelectFragment_to_medicineDetailsFragment, bundle
+                R.id.action_medicineSelectFragment_to_reminderAddFragment, bundle
             )
         }
 

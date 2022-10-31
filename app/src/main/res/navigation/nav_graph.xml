@@ -37,8 +37,8 @@
         android:label="fragment_medicine_select"
         tools:layout="@layout/fragment_medicine_select" >
         <action
-            android:id="@+id/action_medicineSelectFragment_to_medicineDetailsFragment"
-            app:destination="@id/medicineDetailsFragment" />
+            android:id="@+id/action_medicineSelectFragment_to_reminderAddFragment"
+            app:destination="@id/reminderAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/medicineMainFragment"
@@ -82,5 +82,9 @@
         android:id="@+id/reminderAddFragment"
         android:name="cr.una.example.frontend_farmastock.view.ReminderAddFragment"
         android:label="fragment_reminder_add"
-        tools:layout="@layout/fragment_reminder_add" />
+        tools:layout="@layout/fragment_reminder_add" >
+        <action
+            android:id="@+id/action_reminderAddFragment_to_medicineSelectFragment"
+            app:destination="@id/medicineSelectFragment" />
+    </fragment>
 </navigation>

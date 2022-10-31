@@ -15,65 +15,78 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import cr.una.example.frontend_farmastock.R
+import cr.una.example.frontend_farmastock.adapter.MedicineAdapter
 import cr.una.example.frontend_farmastock.databinding.FragmentReminderAddBinding
 import cr.una.example.frontend_farmastock.model.ReminderRequest
+import cr.una.example.frontend_farmastock.viewmodel.MedicineViewModel
+import cr.una.example.frontend_farmastock.viewmodel.MedicineViewModelFactory
 import cr.una.example.frontend_farmastock.viewmodel.ReminderViewModel
+import cr.una.example.frontend_farmastock.viewmodel.StateMedicine
 import kotlinx.android.synthetic.main.fragment_reminder_details.*
 import kotlinx.android.synthetic.main.medicine_item.view.*
 import okhttp3.internal.toHexString
 import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ReminderAddFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ReminderAddFragment : Fragment() {
     // Definition of the binding variable
     private var _binding: FragmentReminderAddBinding? = null
     private val binding get() = _binding!!
     private var daysOfTheWeek = mutableListOf<TextView>()
 
-    // View model
+
     private val reminderViewModel: ReminderViewModel by activityViewModels()
 
-
+    private val medicineViewModel: MedicineViewModel by activityViewModels{
+        MedicineViewModelFactory()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var date = ""
         _binding = FragmentReminderAddBinding.inflate(inflater, container, false)
+
+        // DATE PICKER
         binding.calendarPicker.setOnClickListener {
             onClickListenerDatePicker()
         }
-
         var days  = mutableListOf(
             binding.Sunday, binding.Monday, binding.Tuesday, binding.Wednesday,
             binding.Thursday, binding.Friday, binding.Saturday
         )
-
         for(day in days){
             onClickListenerWeekDays(day)
         }
-        //here
 
-        // Inflate the layout for this fragment
+        // MEDICINE SELECT
+        val medicineId: String = arguments?.getString(MedicineAdapter.MEDICINE_ID) ?: "0"
+        if(medicineId!="0") medicineViewModel.getMedicine(medicineId.toLong())
+
+        medicineViewModel.state.observe(viewLifecycleOwner) { state ->
+            with(binding.root) {
+                when (state) {
+                    StateMedicine.Loading -> {}
+                    is StateMedicine.Error -> {}
+                    is StateMedicine.Success -> {
+                        state.medicine?.let {
+                            binding.medicineSelectInfo.text = it.name.toString()
+                        }
+                    }
+                    else -> {}
+                }
+            }
+        }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentReminderAddBinding.bind(view)
-//        binding.calendarPicker.setOnClickListener {
-////            Navigation.findNavController(view).navigate(R.id.action_reminderAddFragment_to_reminderMainFragment)
-//        }
+        binding.buttonPickMedicine.setOnClickListener{
+            Navigation.findNavController(view).navigate(R.id.action_reminderAddFragment_to_medicineSelectFragment)
+        }
 
     }
 

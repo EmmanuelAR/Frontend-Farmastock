@@ -179,14 +179,14 @@
                     android:paddingVertical="10dp">
 
                     <TextView
-                        android:id="@+id/client_select_info"
+                        android:id="@+id/medicine_select_info"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="No medicine selected" />
 
                     <Button
-                        android:id="@+id/button_pick_client"
+                        android:id="@+id/button_pick_medicine"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:text="Select a Medicine" />
