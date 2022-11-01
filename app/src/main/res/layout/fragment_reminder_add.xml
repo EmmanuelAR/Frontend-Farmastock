@@ -205,7 +205,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/Save"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"

@@ -33,6 +33,8 @@ class ReminderAddFragment : Fragment() {
     private var _binding: FragmentReminderAddBinding? = null
     private val binding get() = _binding!!
     private var daysOfTheWeek = mutableListOf<TextView>()
+    private var specificDate = ""
+    private var timeSelected = ""
 
 
     private val reminderViewModel: ReminderViewModel by activityViewModels()
@@ -78,6 +80,21 @@ class ReminderAddFragment : Fragment() {
             }
         }
 
+        binding.Save.setOnClickListener {
+            if(validate()){
+                // Repetitivo por dias de la semana a la hora que tenga
+                // el time picker
+                if(daysOfTheWeek.size != 0){
+
+                }
+                // Por fecha especifica que tenga el date picker
+                // y la hora que tenga time picker
+                else{
+
+                }
+            }
+        }
+
         return binding.root
     }
 
@@ -100,6 +117,10 @@ class ReminderAddFragment : Fragment() {
         datePicker.addOnPositiveButtonClickListener {
             // formatting date in dd-mm-yyyy format.
             date = Date(it).toString().reversed().substringAfter(':').substringAfter(' ').reversed()
+
+            // formatting date in dd-mm-yyyy format.
+//            val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
+//            val date = dateFormatter.format(Date(it))
 
             binding.AlarmDescription.text = "On $date"
         }
@@ -155,6 +176,15 @@ class ReminderAddFragment : Fragment() {
             }
         }
         return  day
+    }
+
+    private fun validate():Boolean{
+        // Que la fecha del time picker no este en el pasado
+
+        // Que haya una medicina seleccionada
+
+        // Que AlarmDescription.text != "Set an Alarm"
+        return true
     }
 
 }
