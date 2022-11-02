@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/form_name"
-                android:textAppearance="?attr/textAppearanceHeadline6" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
         </LinearLayout>
 
         <LinearLayout
@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/main_medicine_dosis_LABEL"
-                android:textAppearance="?attr/textAppearanceHeadline6" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
         </LinearLayout>
 
@@ -76,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/main_medicine_cantidad"
-                android:textAppearance="?attr/textAppearanceHeadline6" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
         </LinearLayout>
 
     </LinearLayout>

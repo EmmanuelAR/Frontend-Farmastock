@@ -79,7 +79,7 @@ class MedicineDetailsFragment : Fragment() {
 
                 }
             val alert = dialogBuilder.create()
-            alert.setTitle("Delete Vehicle")
+            alert.setTitle("Delete medicine")
             alert.show()
         }
 
