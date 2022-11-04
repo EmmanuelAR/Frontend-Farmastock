@@ -19,8 +19,8 @@ import cr.una.example.frontend_farmastock.model.RoleDetails
 import cr.una.example.frontend_farmastock.model.UserRequest
 import cr.una.example.frontend_farmastock.viewmodel.UserViewModel
 import cr.una.example.frontend_farmastock.viewmodel.UserViewModelFactory
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_register.*
+//import kotlinx.android.synthetic.main.activity_login.*
+//import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -38,9 +38,9 @@ class RegisterActivity : AppCompatActivity() {
             ViewModelProvider(this, UserViewModelFactory())[UserViewModel::class.java]
 
         binding.RgtButton.setOnClickListener {
-            var x = false
-            x = validateEmptySpaces()
-            if(!x){
+//            var x = false
+//            x = validateEmptySpaces()
+//            if(!x){
                 userViewModel.createUser(
                     UserRequest(
                         firstName =  binding.etFirstName.text.toString() ,
@@ -52,7 +52,7 @@ class RegisterActivity : AppCompatActivity() {
                     )
                 )
                 gettingBackToLoginActivity()
-            }
+//            }
 
         }
 
@@ -63,30 +63,30 @@ class RegisterActivity : AppCompatActivity() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
-    private fun validateEmptySpaces(): Boolean {
-        if(TextUtils.isEmpty(etFirstName.text.toString())){
-            Toast.makeText(this, "Empty field (First Name) not allowed",Toast.LENGTH_SHORT).show()
-            return true
-        }
-        if(TextUtils.isEmpty(etLastName.text.toString())){
-            Toast.makeText(this, "Empty field (Last Name) not allowed",Toast.LENGTH_SHORT).show()
-            return true
-        }
-        if(TextUtils.isEmpty(etEmail.text.toString())){
-            Toast.makeText(this, "Empty field (Email )not allowed",Toast.LENGTH_SHORT).show()
-            return true
-        }
-        if(TextUtils.isEmpty(etPassword.text.toString())){
-            Toast.makeText(this, "Empty field (password) not allowed",Toast.LENGTH_SHORT).show()
-            return true
-        }
-        if(!binding.validateTermsAndServices.isChecked){
-            Toast.makeText(this, "You need to agree with the terms and conditions",Toast.LENGTH_SHORT).show()
-            return true
-        }
-        Toast.makeText(this, "The user has been created successfully...",Toast.LENGTH_SHORT).show()
-        return false
-    }
+//    private fun validateEmptySpaces(): Boolean {
+//        if(TextUtils.isEmpty(etFirstName.text.toString())){
+//            Toast.makeText(this, "Empty field (First Name) not allowed",Toast.LENGTH_SHORT).show()
+//            return true
+//        }
+//        if(TextUtils.isEmpty(etLastName.text.toString())){
+//            Toast.makeText(this, "Empty field (Last Name) not allowed",Toast.LENGTH_SHORT).show()
+//            return true
+//        }
+//        if(TextUtils.isEmpty(etEmail.text.toString())){
+//            Toast.makeText(this, "Empty field (Email )not allowed",Toast.LENGTH_SHORT).show()
+//            return true
+//        }
+//        if(TextUtils.isEmpty(etPassword.text.toString())){
+//            Toast.makeText(this, "Empty field (password) not allowed",Toast.LENGTH_SHORT).show()
+//            return true
+//        }
+//        if(!binding.validateTermsAndServices.isChecked){
+//            Toast.makeText(this, "You need to agree with the terms and conditions",Toast.LENGTH_SHORT).show()
+//            return true
+//        }
+//        Toast.makeText(this, "The user has been created successfully...",Toast.LENGTH_SHORT).show()
+//        return false
+//    }
 
     }
 

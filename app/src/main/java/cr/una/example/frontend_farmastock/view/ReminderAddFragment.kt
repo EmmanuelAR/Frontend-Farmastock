@@ -1,31 +1,33 @@
 package cr.una.example.frontend_farmastock.view
 
+
+import android.app.*
+import android.content.Context
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import java.util.*
 import android.graphics.Color
 import android.icu.text.SimpleDateFormat
-import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
 import cr.una.example.frontend_farmastock.R
 import cr.una.example.frontend_farmastock.adapter.MedicineAdapter
 import cr.una.example.frontend_farmastock.databinding.FragmentReminderAddBinding
-import cr.una.example.frontend_farmastock.model.ReminderRequest
+import cr.una.example.frontend_farmastock.utils.channelID
+import cr.una.example.frontend_farmastock.utils.messageExtra
+import cr.una.example.frontend_farmastock.utils.notificationID
+import cr.una.example.frontend_farmastock.utils.titleExtra
 import cr.una.example.frontend_farmastock.viewmodel.MedicineViewModel
 import cr.una.example.frontend_farmastock.viewmodel.MedicineViewModelFactory
 import cr.una.example.frontend_farmastock.viewmodel.ReminderViewModel
 import cr.una.example.frontend_farmastock.viewmodel.StateMedicine
-import kotlinx.android.synthetic.main.fragment_reminder_details.*
-import kotlinx.android.synthetic.main.medicine_item.view.*
-import okhttp3.internal.toHexString
-import java.util.*
 
 
 class ReminderAddFragment : Fragment() {
@@ -33,7 +35,7 @@ class ReminderAddFragment : Fragment() {
     private var _binding: FragmentReminderAddBinding? = null
     private val binding get() = _binding!!
     private var daysOfTheWeek = mutableListOf<TextView>()
-    private var specificDate = ""
+    private var specificDate =""
     private var timeSelected = ""
 
 
@@ -48,6 +50,8 @@ class ReminderAddFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentReminderAddBinding.inflate(inflater, container, false)
+        createNotificationChannel()
+
 
         // DATE PICKER
         binding.calendarPicker.setOnClickListener {
@@ -79,23 +83,90 @@ class ReminderAddFragment : Fragment() {
                 }
             }
         }
-
+        createNotificationChannel()
         binding.Save.setOnClickListener {
-            if(validate()){
-                // Repetitivo por dias de la semana a la hora que tenga
-                // el time picker
-                if(daysOfTheWeek.size != 0){
 
-                }
-                // Por fecha especifica que tenga el date picker
-                // y la hora que tenga time picker
-                else{
+            scheduleNotification()
 
-                }
-            }
+//            if(validate()){
+//                // Repetitivo por dias de la semana a la hora que tenga
+//                // el time picker
+//                if(daysOfTheWeek.size != 0){
+//
+//                }
+//                // Por fecha especifica que tenga el date picker
+//                // y la hora que tenga time picker
+//                else{
+//
+//                }
+//            }
         }
 
         return binding.root
+    }
+
+    private fun scheduleNotification() {
+        val intent = Intent(activity!!.applicationContext, Notification::class.java)
+        val title = "test"
+        val message = "tes"
+        intent.putExtra(titleExtra, title)
+        intent.putExtra(messageExtra, message)
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            activity!!.applicationContext,
+            notificationID,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val alarmManager = activity!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val time = getTime()
+        alarmManager.setExactAndAllowWhileIdle(
+            AlarmManager.RTC_WAKEUP,
+            time,
+            pendingIntent
+        )
+        showAlert(time, title, message)
+    }
+
+    private fun showAlert(time: Long, title: String, message: String)
+    {
+        val date = Date(time)
+        val dateFormat = android.text.format.DateFormat.getLongDateFormat(activity!!.applicationContext)
+        val timeFormat = android.text.format.DateFormat.getTimeFormat(activity!!.applicationContext)
+
+        AlertDialog.Builder(activity)
+            .setTitle("Notification Scheduled")
+            .setMessage(
+                "Title: " + title +
+                        "\nMessage: " + message +
+                        "\nAt: " + dateFormat.format(date) + " " + timeFormat.format(date))
+            .setPositiveButton("Okay"){_,_ ->}
+            .show()
+    }
+
+    private fun getTime(): Long {
+        val minute = binding.timePicker.minute
+        val hour = binding.timePicker.hour
+        val date = specificDate.split("-")
+        val day = Integer.parseInt(date[0])
+        val month = Integer.parseInt(date[1])
+        val year = Integer.parseInt(date[2])
+
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month-1, day, hour, minute)
+        return calendar.timeInMillis
+
+    }
+
+    private fun createNotificationChannel() {
+        val name = "Notif Channel"
+        val desc = "A Description of the Channel"
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel(channelID, name, importance)
+        channel.description = desc
+        val notificationManager = activity!!.getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -119,8 +190,9 @@ class ReminderAddFragment : Fragment() {
             date = Date(it).toString().reversed().substringAfter(':').substringAfter(' ').reversed()
 
             // formatting date in dd-mm-yyyy format.
-//            val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
-//            val date = dateFormatter.format(Date(it))
+            val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
+            val date = dateFormatter.format(Date(it))
+            specificDate = date
 
             binding.AlarmDescription.text = "On $date"
         }
