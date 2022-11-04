@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -85,21 +86,19 @@ class ReminderAddFragment : Fragment() {
         }
         createNotificationChannel()
         binding.Save.setOnClickListener {
-
             scheduleNotification()
+            if(validate()){
+                // Repetitivo por dias de la semana a la hora que tenga
+                // el time picker
+                if(daysOfTheWeek.size != 0){
 
-//            if(validate()){
-//                // Repetitivo por dias de la semana a la hora que tenga
-//                // el time picker
-//                if(daysOfTheWeek.size != 0){
-//
-//                }
-//                // Por fecha especifica que tenga el date picker
-//                // y la hora que tenga time picker
-//                else{
-//
-//                }
-//            }
+                }
+                // Por fecha especifica que tenga el date picker
+                // y la hora que tenga time picker
+                else{
+//                    scheduleNotification()
+                }
+            }
         }
 
         return binding.root
@@ -122,7 +121,7 @@ class ReminderAddFragment : Fragment() {
         val alarmManager = activity!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val time = getTime()
         alarmManager.setExactAndAllowWhileIdle(
-            AlarmManager.RTC_WAKEUP,
+            AlarmManager.ELAPSED_REALTIME_WAKEUP,
             time,
             pendingIntent
         )
@@ -200,6 +199,7 @@ class ReminderAddFragment : Fragment() {
 
     private fun onClickListenerWeekDays(tv: TextView){
         tv.setOnClickListener {
+            specificDate = ""
             if (tv !in daysOfTheWeek){
                 daysOfTheWeek.add(tv)
                 tv.setBackgroundResource(R.color.blue_farmastock)
@@ -251,11 +251,33 @@ class ReminderAddFragment : Fragment() {
     }
 
     private fun validate():Boolean{
-        // Que la fecha del time picker no este en el pasado
+        var errors: MutableList<String> = mutableListOf()
 
-        // Que haya una medicina seleccionada
+        // Otras validaciones?
 
-        // Que AlarmDescription.text != "Set an Alarm"
+        if(binding.AlarmDescription.text == "Set an Alarm"){
+            errors.add("Select a at least 1 day or set a date first")
+        }
+
+        if(binding.medicineSelectInfo.text == "No medicine selected"){
+            errors.add("You must select a Medicine")
+        }
+
+        if(!specificDate.isEmpty()){
+            var currentTime = Calendar. getInstance().timeInMillis;
+            var selectedTime = getTime()
+            if( selectedTime < currentTime){
+                errors.add("The Alarm can not be created in the past")
+            }
+        }
+
+        if(errors.size != 0){
+            for(error in errors){
+                Toast.makeText(activity, error, Toast.LENGTH_SHORT).show();
+            }
+            return false
+        }
+
         return true
     }
 
