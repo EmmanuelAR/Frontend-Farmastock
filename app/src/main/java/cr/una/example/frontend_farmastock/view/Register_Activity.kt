@@ -1,6 +1,8 @@
 package cr.una.example.frontend_farmastock.view
 
+
 import android.app.Activity
+import com.google.gson.Gson
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -30,9 +32,15 @@ class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val user1 = intent.extras?.get("user1")
+        if(user1 != null){
+            val gson = Gson()
+            val userRequest = gson.fromJson(user1.toString(), UserRequest::class.java)
+            fillForm(userRequest)
+        }
 
         userViewModel =
             ViewModelProvider(this, UserViewModelFactory())[UserViewModel::class.java]
@@ -55,9 +63,34 @@ class RegisterActivity : AppCompatActivity() {
             }
 
         }
-
+        binding.terms.setOnClickListener {
+            termsandConditionsActivity()
+        }
 
         }
+    private fun fillForm(userRequest: UserRequest){
+        binding.etFirstName.setText(userRequest.firstName)
+        binding.etLastName.setText(userRequest.lastName)
+        binding.etEmail.setText(userRequest.email)
+        binding.etPassword.setText(userRequest.password)
+        binding.validateTermsAndServices.isChecked = true
+
+
+    }
+    private fun termsandConditionsActivity(){
+        val intent = Intent(this, Terms_and_conditions::class.java)
+        val json = Gson()
+        val userRequest = UserRequest()
+        userRequest.firstName = binding.etFirstName.text.toString()
+        userRequest.lastName = binding.etLastName.text.toString()
+        userRequest.email = binding.etEmail.text.toString()
+        userRequest.password = binding.etPassword.text.toString()
+        var x = json.toJson(userRequest)
+        intent.putExtra("user",x)
+        finish()
+        startActivity(intent)
+
+    }
     private fun gettingBackToLoginActivity() {
 
         val intent = Intent(this, LoginActivity::class.java)

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FrontendFarmastock" >
 
+        <activity android:name=".view.Terms_and_conditions" android:exported="false">
+        <meta-data android:name="android.app.lib_name" android:value=""/>
+        </activity>
         <activity
             android:name=".view.MainActivity"
             android:exported="false" />

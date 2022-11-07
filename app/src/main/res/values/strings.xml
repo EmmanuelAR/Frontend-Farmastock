@@ -65,5 +65,20 @@
     <string name="fecha_y_hora">Date-time</string>
     <string name="descripci_n">Description</string>
     <string name="medicine_name">Medicine</string>
+    <string name="Terms_and_condiions"><u>Terms and conditions</u></string>
+    <string name="Parrafo1">
+
+2.1 In order to use the SDK, you must first agree to the License Agreement. You may not use the SDK if you do not accept the License Agreement.
+
+2.2 By clicking to accept and/or using this SDK, you hereby agree to the terms of the License Agreement.
+
+2.3 You may not use the SDK and may not accept the License Agreement if you are a person barred from receiving the SDK under the laws of the United States or other countries, including the country in which you are resident or from which you use the SDK.
+
+2.4 If you are agreeing to be bound by the License Agreement on behalf of your employer or other entity, you represent and warrant that you have full legal authority to bind your employer or such entity to the License Agreement. If you do not have the requisite authority, you may not accept the License Agreement or use the SDK on behalf of your employer or other entity.
+
+
+
+   </string>
+
 
 </resources>
