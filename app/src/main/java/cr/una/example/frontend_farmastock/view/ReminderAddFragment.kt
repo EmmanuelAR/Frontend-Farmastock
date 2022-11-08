@@ -2,29 +2,31 @@ package cr.una.example.frontend_farmastock.view
 
 
 import android.app.*
+import android.app.Notification
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import java.util.*
+
 import android.graphics.Color
 import android.icu.text.SimpleDateFormat
+import android.os.Build
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.google.android.material.datepicker.MaterialDatePicker
-import cr.una.example.frontend_farmastock.R
+import cr.una.example.frontend_farmastock.*
+
+
 import cr.una.example.frontend_farmastock.adapter.MedicineAdapter
 import cr.una.example.frontend_farmastock.databinding.FragmentReminderAddBinding
-import cr.una.example.frontend_farmastock.utils.channelID
-import cr.una.example.frontend_farmastock.utils.messageExtra
-import cr.una.example.frontend_farmastock.utils.notificationID
-import cr.una.example.frontend_farmastock.utils.titleExtra
 import cr.una.example.frontend_farmastock.viewmodel.MedicineViewModel
 import cr.una.example.frontend_farmastock.viewmodel.MedicineViewModelFactory
 import cr.una.example.frontend_farmastock.viewmodel.ReminderViewModel
@@ -84,7 +86,6 @@ class ReminderAddFragment : Fragment() {
                 }
             }
         }
-        createNotificationChannel()
         binding.Save.setOnClickListener {
             scheduleNotification()
             if(validate()){
@@ -159,13 +160,27 @@ class ReminderAddFragment : Fragment() {
     }
 
     private fun createNotificationChannel() {
-        val name = "Notif Channel"
-        val desc = "A Description of the Channel"
-        val importance = NotificationManager.IMPORTANCE_DEFAULT
-        val channel = NotificationChannel(channelID, name, importance)
-        channel.description = desc
-        val notificationManager = activity!!.getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(channel)
+
+//        val channel = NotificationChannel(channelID, name, importance)
+//        channel.description = desc
+//        val notificationManager = activity!!.getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
+//        notificationManager.createNotificationChannel(channel)
+
+
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Notif Channel"
+            val desc = "A Description of the Channel"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(channelID, name, importance).apply {
+                description = desc
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                activity!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

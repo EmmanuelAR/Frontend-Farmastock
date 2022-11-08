@@ -65,5 +65,8 @@
     <string name="fecha_y_hora">Date-time</string>
     <string name="descripci_n">Description</string>
     <string name="medicine_name">Medicine</string>
+    <string name="title">Title</string>
+    <string name="message">Message</string>
+    <string name="schedule_notification">Schedule Notification</string>
 
 </resources>

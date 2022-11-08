@@ -1,11 +1,10 @@
-package cr.una.example.frontend_farmastock.utils
+package cr.una.example.frontend_farmastock
 
 import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
-import cr.una.example.frontend_farmastock.R
 
 const val notificationID = 1
 const val channelID = "channel1"
