@@ -30,6 +30,14 @@ class MainActivity2 : AppCompatActivity()
 
         createNotificationChannel()
         binding.submitButton.setOnClickListener { scheduleNotification() }
+
+
+        binding.testButton.setOnClickListener{
+            finish()
+            // Initiate successful logged in experience
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun scheduleNotification()
@@ -96,4 +104,7 @@ class MainActivity2 : AppCompatActivity()
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)
     }
+
+
+
 }

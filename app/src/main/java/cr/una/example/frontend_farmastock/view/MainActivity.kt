@@ -1,9 +1,14 @@
 package cr.una.example.frontend_farmastock.view
 
+
+
+import android.app.NotificationManager
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-
+import androidx.core.app.NotificationCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -11,8 +16,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import cr.una.example.frontend_farmastock.R
+import cr.una.example.frontend_farmastock.*
 import cr.una.example.frontend_farmastock.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 
