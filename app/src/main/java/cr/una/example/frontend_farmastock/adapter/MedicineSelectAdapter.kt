@@ -1,18 +1,18 @@
 package cr.una.example.frontend_farmastock.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.core.os.bundleOf
-import androidx.navigation.findNavController
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.RecyclerView
-import cr.una.example.frontend_farmastock.R
-import cr.una.example.frontend_farmastock.databinding.FragmentMedicineMainBinding
 import cr.una.example.frontend_farmastock.databinding.MedicineItemBinding
 import cr.una.example.frontend_farmastock.model.MedicineResponse
 
-class MedicineSelectAdapter : RecyclerView.Adapter<MedicineSelectAdapter.MainViewHolder>(),
+
+class MedicineSelectAdapter() : RecyclerView.Adapter<MedicineSelectAdapter.MainViewHolder>(),
     Filterable {
 
     var medicineFilterList = mutableListOf<MedicineResponse>()
@@ -29,6 +29,7 @@ class MedicineSelectAdapter : RecyclerView.Adapter<MedicineSelectAdapter.MainVie
         val inflater = LayoutInflater.from(parent.context)
         val binding = MedicineItemBinding.inflate(inflater, parent, false)
         return MainViewHolder(binding)
+
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
@@ -37,12 +38,19 @@ class MedicineSelectAdapter : RecyclerView.Adapter<MedicineSelectAdapter.MainVie
         holder.binding.cantidad.text = medicine.quantity.toString()
         holder.binding.dosis.text = medicine.dose.toString()
 
+
         holder.itemView.setOnClickListener() {
+
             val bundle = bundleOf(MEDICINE_ID to medicineFilterList[position].id.toString())
 
-            holder.itemView.findNavController().navigate(
-                R.id.action_medicineSelectFragment_to_reminderAddFragment, bundle
-            )
+            val intent = Intent("custom-message")
+            intent.putExtra("MEDICINE_ID", medicineFilterList[position].id.toString())
+
+            //LocalBroadcastManager.getInstance().sendBroadcast(intent)
+
+
+
+
         }
 
     }

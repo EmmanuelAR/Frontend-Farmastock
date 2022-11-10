@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.google.android.material.datepicker.MaterialDatePicker
 import cr.una.example.frontend_farmastock.*
 import cr.una.example.frontend_farmastock.Notification
@@ -17,6 +19,9 @@ import java.util.*
 
 
 import cr.una.example.frontend_farmastock.adapter.MedicineAdapter
+import cr.una.example.frontend_farmastock.adapter.MedicineSelectAdapter
+import cr.una.example.frontend_farmastock.viewmodel.MedicineViewModel
+import cr.una.example.frontend_farmastock.viewmodel.*
 
 import cr.una.example.frontend_farmastock.viewmodel.StateMedicine
 import java.time.LocalDate
@@ -29,9 +34,10 @@ class MainActivity2 : AppCompatActivity()
     private var daysOfTheWeek = mutableListOf<TextView>()
     private var specificDate =0
     private var timeSelected = ""
+    private lateinit var medicineViewModel: MedicineViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -46,8 +52,8 @@ class MainActivity2 : AppCompatActivity()
 //            startActivity(intent)
 //
 /*            if(validate()){*/
-                // Repetitivo por dias de la semana a la hora que tenga
-                // el time picker
+            // Repetitivo por dias de la semana a la hora que tenga
+            // el time picker
 //                if(daysOfTheWeek.size != 0){
 //                    finish()
 //                    // Initiate successful logged in experience
@@ -68,42 +74,61 @@ class MainActivity2 : AppCompatActivity()
         }
 
 
-
         // DATE PICKER
         binding.calendarPicker.setOnClickListener {
             onClickListenerDatePicker()
         }
-        var days  = mutableListOf(
+        var days = mutableListOf(
             binding.Sunday, binding.Monday, binding.Tuesday, binding.Wednesday,
             binding.Thursday, binding.Friday, binding.Saturday
         )
-        for(day in days){
+        for (day in days) {
             onClickListenerWeekDays(day)
         }
 
-//        // MEDICINE SELECT
-//        val medicineId: String = arguments?.getString(MedicineAdapter.MEDICINE_ID) ?: "0"
-//        if(medicineId!="0") medicineViewModel.getMedicine(medicineId.toLong())
-//
-//        medicineViewModel.state.observe(viewLifecycleOwner) { state ->
-//            with(binding.root) {
-//                when (state) {
-//                    StateMedicine.Loading -> {}
-//                    is StateMedicine.Error -> {}
-//                    is StateMedicine.Success -> {
-//                        state.medicine?.let {
-//                            binding.medicineSelectInfo.text = it.name.toString()
-//                        }
-//                    }
-//                    else -> {}
-//                }
-//            }
-//        }
+        // MEDICINE SELECT
+        // val medicineId: String = arguments?.getString(MedicineAdapter.MEDICINE_ID) ?: "0"
+        //if(medicineId!="0") medicineViewModel.getMedicine(medicineId.toLong())
+
+        // LoginViewModelFactory
+        medicineViewModel =
+            ViewModelProvider(this, MedicineViewModelFactory())[MedicineViewModel::class.java]
+
+        medicineViewModel.state.observe(this, androidx.lifecycle.Observer { state ->
+            with(binding.root) {
+                when (state) {
+                    StateMedicine.Loading -> {
+                        // TODO: If you need do something in loading
+                    }
+                    // Error and Success are both -classes- so we need to check their type with 'is'
+                    is StateMedicine.Error -> {
+                        // TODO: If you need do something in error
+                    }
+                    is StateMedicine.Success -> {
+                        state.medicine?.let {
+                            binding.medicineSelectInfo.text = it.name.toString()
+                        }
+                    }
+                    else -> {
+                        // TODO: Not state loaded
+                    }
+                }
+            }
+        })
+
+        binding.buttonPickMedicine.setOnClickListener{
+            finish()
+            val intent = Intent(this,MedicineSelectActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
 
 
     }
+
+
 
 
 

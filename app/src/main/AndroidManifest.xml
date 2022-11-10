@@ -4,9 +4,8 @@
 
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
-
     <application
-        android:name="cr.una.example.frontend_farmastock.utils.MyApplication"
+        android:name=".utils.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,20 +13,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FrontendFarmastock">
         <activity
-            android:name=".view.MainActivity2"
-            android:exported="true">
+            android:name=".view.MedicineSelectActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
         </activity>
-
+        <activity
+            android:name=".view.MainActivity2"
+            android:exported="true"></activity>
 
         <receiver
-            android:name="Notification"
+            android:name=".Notification"
             android:enabled="true" />
 
         <activity
             android:name=".view.MainActivity"
             android:exported="true" />
-
-
         <activity
             android:name=".view.RegisterActivity"
             android:exported="false" />
