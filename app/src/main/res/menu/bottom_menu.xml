@@ -22,7 +22,7 @@
         android:title="Recordatorios"/>
 
     <item
-        android:id="@+id/aboutFragment"
-        android:icon="@drawable/ic_about_foreground"
-        android:title="About"/>
+        android:id="@+id/logout"
+        android:icon="@drawable/logout_svgrepo_com"
+        android:title="logout"/>
 </menu>

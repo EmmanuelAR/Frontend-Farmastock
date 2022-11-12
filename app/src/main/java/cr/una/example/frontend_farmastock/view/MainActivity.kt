@@ -6,6 +6,7 @@ import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -17,6 +18,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import cr.una.example.frontend_farmastock.R
 import cr.una.example.frontend_farmastock.databinding.ActivityMainBinding
 import cr.una.example.frontend_farmastock.utils.Notification
+import cr.una.example.frontend_farmastock.viewmodel.LoginViewModel
+import cr.una.example.frontend_farmastock.viewmodel.LoginViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var loginViewModel: LoginViewModel
     val br: BroadcastReceiver = Notification()
     var specificDate:String = ""
 
@@ -38,6 +42,8 @@ class MainActivity : AppCompatActivity() {
             R.id.fragmentContainerView
         ) as NavHostFragment
 
+        loginViewModel =
+            ViewModelProvider(this, LoginViewModelFactory())[LoginViewModel::class.java]
         navController = navHostFragment.navController
 
         // Setup the bottom navigation view with navController
@@ -49,7 +55,10 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+        binding.bottonNavigationView.menu.findItem(R.id.logout).setOnMenuItemClickListener{
+            goToLoginActivity()
 
+        }
 
 //        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION).apply {
 //            addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED)
@@ -59,5 +68,12 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration)
+    }
+
+    fun goToLoginActivity(): Boolean {
+        loginViewModel.logout()
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        return true
     }
 }
