@@ -2,13 +2,16 @@ package cr.una.example.frontend_farmastock.view
 
 
 import android.app.*
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import java.util.*
 import android.graphics.Color
 import android.icu.text.SimpleDateFormat
+import android.net.ConnectivityManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +32,7 @@ import cr.una.example.frontend_farmastock.viewmodel.MedicineViewModel
 import cr.una.example.frontend_farmastock.viewmodel.MedicineViewModelFactory
 import cr.una.example.frontend_farmastock.viewmodel.ReminderViewModel
 import cr.una.example.frontend_farmastock.viewmodel.StateMedicine
+import cr.una.example.frontend_farmastock.utils.Notification
 
 
 class ReminderAddFragment : Fragment() {
@@ -38,6 +42,7 @@ class ReminderAddFragment : Fragment() {
     private var daysOfTheWeek = mutableListOf<TextView>()
     private var specificDate =""
     private var timeSelected = ""
+    val br: BroadcastReceiver = cr.una.example.frontend_farmastock.utils.Notification()
 
 
     private val reminderViewModel: ReminderViewModel by activityViewModels()
@@ -105,27 +110,66 @@ class ReminderAddFragment : Fragment() {
     }
 
     private fun scheduleNotification() {
-        val intent = Intent(activity!!.applicationContext, Notification::class.java)
-        val title = "test"
-        val message = "tes"
-        intent.putExtra(titleExtra, title)
-        intent.putExtra(messageExtra, message)
+        val alarmManager = context!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, Notification::class.java)
 
-        val pendingIntent = PendingIntent.getBroadcast(
-            activity!!.applicationContext,
-            notificationID,
-            intent,
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-        )
+// Used for filtering inside Broadcast receiver
+        intent.action = "MyBroadcastReceiverAction"
+        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
 
-        val alarmManager = activity!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+// In this particular example we are going to set it to trigger after 30 seconds.
+// You can work with time later when you know this works for
+//sure.
+
+
         val time = getTime()
-        alarmManager.setExactAndAllowWhileIdle(
-            AlarmManager.ELAPSED_REALTIME_WAKEUP,
-            time,
-            pendingIntent
-        )
-        showAlert(time, title, message)
+
+        val msUntilTriggerHour: Long = 30000
+
+
+        val alarmTimeAtUTC: Long = time
+        //val alarmTimeAtUTC: Long = System.currentTimeMillis()
+
+
+// Depending on the version of Android use different function for setting an
+// Alarm.
+// setAlarmClock() - used for everything lower than Android M
+// setExactAndAllowWhileIdle() - used for everything on Android M and higher
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.M) {
+            alarmManager.setAlarmClock(
+                AlarmManager.AlarmClockInfo(alarmTimeAtUTC, pendingIntent),
+                pendingIntent
+            )
+        } else {
+            alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                alarmTimeAtUTC,
+                pendingIntent
+            )
+        }
+
+//        val intent = Intent(activity!!.applicationContext, Notification::class.java)
+//
+//        val title = "test"
+//        val message = "tes"
+//        intent.putExtra(titleExtra, title)
+//        intent.putExtra(messageExtra, message)
+//
+//        val pendingIntent = PendingIntent.getBroadcast(
+//            activity!!.applicationContext,
+//            notificationID,
+//            intent,
+//            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+//        )
+//
+//        val alarmManager = activity!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+//        val time = getTime()
+//        alarmManager.setExactAndAllowWhileIdle(
+//            AlarmManager.ELAPSED_REALTIME_WAKEUP,
+//            time,
+//            pendingIntent
+//        )
+//        showAlert(time, title, message)
     }
 
     private fun showAlert(time: Long, title: String, message: String)

@@ -1,6 +1,9 @@
 package cr.una.example.frontend_farmastock.view
 
+import android.content.BroadcastReceiver
 import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
@@ -13,6 +16,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import cr.una.example.frontend_farmastock.R
 import cr.una.example.frontend_farmastock.databinding.ActivityMainBinding
+import cr.una.example.frontend_farmastock.utils.Notification
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+    val br: BroadcastReceiver = Notification()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +47,13 @@ class MainActivity : AppCompatActivity() {
             setOf(R.id.profileFragment,R.id.homeFragment,R.id.medicineMainFragment)
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+
+
+//        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION).apply {
+//            addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED)
+//        }
+//        registerReceiver(br, filter)
 
     }
     override fun onSupportNavigateUp(): Boolean {
