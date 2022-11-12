@@ -11,6 +11,7 @@ import cr.una.example.frontend_farmastock.R
 import cr.una.example.frontend_farmastock.databinding.FragmentMedicineMainBinding
 import cr.una.example.frontend_farmastock.databinding.MedicineItemBinding
 import cr.una.example.frontend_farmastock.model.MedicineResponse
+import cr.una.example.frontend_farmastock.view.ReminderAddFragment
 
 class MedicineSelectAdapter : RecyclerView.Adapter<MedicineSelectAdapter.MainViewHolder>(),
     Filterable {
@@ -39,7 +40,6 @@ class MedicineSelectAdapter : RecyclerView.Adapter<MedicineSelectAdapter.MainVie
 
         holder.itemView.setOnClickListener() {
             val bundle = bundleOf(MEDICINE_ID to medicineFilterList[position].id.toString())
-
             holder.itemView.findNavController().navigate(
                 R.id.action_medicineSelectFragment_to_reminderAddFragment, bundle
             )

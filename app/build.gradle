@@ -1,16 +1,16 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-android-extensions'
 }
 
 android {
-    compileSdk 32
+    namespace "cr.una.example.frontend_farmastock"
+    compileSdk 31
 
     defaultConfig {
         applicationId "cr.una.example.frontend_farmastock"
-        minSdk 27
-        targetSdk 32
+        minSdk 26
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
@@ -21,6 +21,9 @@ android {
         //buildConfigField "String", "BASE_URL", "\"https://628ae68e667aea3a3e23e474.mockapi.io/api/\""
         buildConfigField "String", "BASE_URL", "\"https://farmastock-v01.herokuapp.com/\""
     }
+    buildFeatures{
+        viewBinding true
+    }
 
     buildTypes {
         release {
@@ -29,23 +32,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
-    // Activate View Binding
-    buildFeatures {
-        viewBinding true
-    }
-    namespace 'cr.una.example.frontend_farmastock'
-
-    //nav
-    viewBinding { enabled = true }
-
-
 
 }
 
@@ -55,11 +47,11 @@ dependencies {
     def lifecycle_version = "2.4.1"
     def nav_version = "2.4.2"
 
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    testImplementation 'junit:junit:4.13.2'
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
