@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:timePickerMode="spinner" />
     </LinearLayout>
 
@@ -46,85 +47,6 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:paddingVertical="10dp">
-
-                    <TextView
-                        android:id="@+id/Sunday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="S"
-                        android:paddingHorizontal="20dp"
-                        android:paddingVertical="10dp"
-                        android:shadowRadius="@dimen/material_emphasis_high_type"
-                        android:textColorHint="#D63434" />
-
-                    <TextView
-                        android:id="@+id/Monday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="M"
-                        android:paddingHorizontal="20dp"
-                        android:paddingVertical="10dp"
-                        android:shadowRadius="@dimen/material_emphasis_high_type"
-                        android:textColorHint="#d9d9d9" />
-
-                    <TextView
-                        android:id="@+id/Tuesday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="T"
-                        android:paddingHorizontal="20dp"
-                        android:paddingVertical="10dp"
-                        android:shadowRadius="@dimen/material_emphasis_high_type"
-                        android:textColorHint="#d9d9d9" />
-
-                    <TextView
-                        android:id="@+id/Wednesday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="W"
-                        android:paddingHorizontal="20dp"
-                        android:paddingVertical="10dp"
-                        android:shadowRadius="@dimen/material_emphasis_high_type"
-                        android:textColorHint="#d9d9d9" />
-
-                    <TextView
-                        android:id="@+id/Thursday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="T"
-                        android:paddingHorizontal="20dp"
-                        android:paddingVertical="10dp"
-                        android:shadowRadius="@dimen/material_emphasis_high_type"
-                        android:textColorHint="#d9d9d9" />
-
-                    <TextView
-                        android:id="@+id/Friday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="F"
-                        android:paddingHorizontal="20dp"
-                        android:paddingVertical="10dp"
-                        android:shadowRadius="@dimen/material_emphasis_high_type"
-                        android:textColorHint="#d9d9d9" />
-
-                    <TextView
-                        android:id="@+id/Saturday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="S"
-                        android:paddingHorizontal="20dp"
-                        android:paddingVertical="10dp"
-                        android:shadowRadius="@dimen/material_emphasis_high_type"
-                        android:textColorHint="#d9d9d9" />
-
-                </LinearLayout>
-
-                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
@@ -139,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="10dp"
-                        android:text="Set an Alarm" />
+                        android:text="Select a Date" />
 
                     <ImageView
                         android:id="@+id/calendar_Picker"

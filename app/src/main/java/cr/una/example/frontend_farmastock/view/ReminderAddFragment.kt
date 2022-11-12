@@ -41,8 +41,6 @@ import cr.una.example.frontend_farmastock.utils.Notification
 class ReminderAddFragment : Fragment() {
     private var _binding: FragmentReminderAddBinding? = null
     private val binding get() = _binding!!
-
-    private var daysOfTheWeek = mutableListOf<TextView>()
     private var specificDate =""
 
     private val reminderViewModel: ReminderViewModel by activityViewModels()
@@ -59,16 +57,15 @@ class ReminderAddFragment : Fragment() {
     ): View? {
         _binding = FragmentReminderAddBinding.inflate(inflater, container, false)
 
+
+        if(!(activity as MainActivity)!!.specificDate.isEmpty()){
+            specificDate = (activity as MainActivity)!!.specificDate
+            binding.AlarmDescription.text = "On $specificDate"
+        }
+
         // DATE PICKER
         binding.calendarPicker.setOnClickListener {
             onClickListenerDatePicker()
-        }
-        var days  = mutableListOf(
-            binding.Sunday, binding.Monday, binding.Tuesday, binding.Wednesday,
-            binding.Thursday, binding.Friday, binding.Saturday
-        )
-        for(day in days){
-            onClickListenerWeekDays(day)
         }
 
         // MEDICINE SELECT
@@ -94,25 +91,12 @@ class ReminderAddFragment : Fragment() {
 
         createNotificationChannel()
         binding.Save.setOnClickListener {
-
-            if(validate()){
-                // Repetitivo por dias de la semana a la hora que tenga
-                // el time picker
-                if(daysOfTheWeek.size != 0){
-
-                }
-                // Por fecha especifica que tenga el date picker
-                // y la hora que tenga time picker
-                else{
-                    scheduleNotification()
-
-                }
-            }
+            if(validate()) scheduleSpecificDateNotification()
         }
         return binding.root
     }
 
-    private fun scheduleNotification() {
+    private fun scheduleSpecificDateNotification() {
 
         val alarmManager = context!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, Notification::class.java)
@@ -164,6 +148,7 @@ class ReminderAddFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentReminderAddBinding.bind(view)
         binding.buttonPickMedicine.setOnClickListener{
+            (activity as MainActivity)!!.specificDate = specificDate
             Navigation.findNavController(view).navigate(R.id.action_reminderAddFragment_to_medicineSelectFragment)
         }
     }
@@ -187,66 +172,13 @@ class ReminderAddFragment : Fragment() {
         }
     }
 
-    private fun onClickListenerWeekDays(tv: TextView){
-        tv.setOnClickListener {
-            specificDate = ""
-            if (tv !in daysOfTheWeek){
-                daysOfTheWeek.add(tv)
-                tv.setBackgroundResource(R.color.blue_farmastock)
-                tv.setHintTextColor(Color.WHITE)
-            }
-            else{
-                daysOfTheWeek.remove(tv)
-                if(tv == binding.Sunday){
-                    tv.setBackgroundColor(Color.WHITE)
-                    tv.setHintTextColor(Color.RED)
-                }
-                else{
-                    tv.setBackgroundColor(Color.WHITE)
-                    tv.setHintTextColor(Color.LTGRAY)
-                }
-            }
-            var desc = binding.AlarmDescription
-            if(daysOfTheWeek.size == 0){
-                desc.text = "Set an Alarm"
-            }else if(daysOfTheWeek.size == 7){
-                desc.text = "Everyday"
-            }
-            else{
-                var aux = "Every "
-                for(day in daysOfTheWeek){
-                    aux += switchDay(day)
-                    if(day != daysOfTheWeek.last()) aux += ", "
-                }
-                desc.text  = aux
-            }
-        }
-    }
-
-    private fun switchDay(tv: TextView): String{
-        var day = ""
-        when (tv) {
-            binding.Sunday -> day = "Sun"
-            binding.Monday -> day = "Mon"
-            binding.Tuesday -> day = "Tue"
-            binding.Wednesday -> day = "Wed"
-            binding.Thursday -> day = "Thu"
-            binding.Friday -> day = "Fri"
-            binding.Saturday -> day = "Sat"
-            else -> { // Note the block
-                print("ERROR")
-            }
-        }
-        return  day
-    }
-
     private fun validate():Boolean{
         var errors: MutableList<String> = mutableListOf()
 
         // Otras validaciones?
 
-        if(binding.AlarmDescription.text == "Set an Alarm"){
-            errors.add("Select a at least 1 day or set a date first")
+        if(binding.AlarmDescription.text == "Select a Date"){
+            errors.add("You must select a date first")
         }
 
         if(binding.medicineSelectInfo.text == "No medicine selected"){
