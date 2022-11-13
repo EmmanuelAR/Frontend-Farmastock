@@ -7,7 +7,7 @@
         android:layout_width="206dp"
         android:layout_height="32dp"
         android:layout_marginStart="101dp"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="46dp"
         android:layout_marginEnd="104dp"
         android:text="Registration Form"
         android:textColor="#000"
@@ -15,19 +15,20 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_4" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <EditText
         android:id="@+id/etFirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="102dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="97dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="100dp"
         android:ems="10"
         android:hint="First Name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et" />
 
@@ -36,12 +37,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="97dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="99dp"
         android:ems="10"
         android:hint="Last Name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etFirstName" />
 
@@ -49,14 +51,14 @@
         android:id="@+id/etEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="102dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginStart="97dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="100dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etLastName" />
 
@@ -65,20 +67,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="97dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="100dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPersonName|textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
     <CheckBox
         android:id="@+id/validateTermsAndServices"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="37dp"
+        android:layout_height="38dp"
         android:layout_marginStart="93dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="8dp"
@@ -91,7 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="123dp"
         android:text="@string/Terms_and_condiions"
         android:textColor="@color/blue_farmastock"
@@ -107,60 +109,25 @@
         android:layout_marginTop="44dp"
         android:layout_marginEnd="123dp"
         android:text="Register Now"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/terms"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView_4"
-        android:layout_width="153dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="78dp"
-        android:text="@string/form_login_title_2"
-        android:textSize="48sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView_5"
-        android:layout_width="85dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="79dp"
-        android:layout_marginEnd="3dp"
-        android:text="@string/form_login_title_1"
-        android:textSize="48sp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/terms" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="60dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="3dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView_4"
-        app:layout_constraintStart_toEndOf="@+id/textView_5"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_plus_svgrepo_com" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="61dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="312dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="132dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="109dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="119dp"
+        android:layout_marginBottom="46dp"
+        app:layout_constraintBottom_toTopOf="@+id/et"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.341"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/pills_medicine_svgrepo_com" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/person_svgrepo_com" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
