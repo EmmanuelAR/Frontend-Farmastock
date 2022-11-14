@@ -1,56 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     android:background="@color/white">
 
-    <RelativeLayout
-        android:id="@+id/relativeTerms"
-        android:layout_width="match_parent"
-        android:layout_height="12000dp">
 
-        <TextView
-        android:id="@+id/termsTitle"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnAceptar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="10dp"
-        android:text="Terminos y Condiciones para el uso de la aplicacion"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="19sp"/>
-
-        <TextView
-        android:id="@+id/article1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/termsTitle"
-        android:layout_marginTop="30dp"
-        android:text="Sobre la aplicacion..."
-            android:textColor="@color/black"
-        android:textSize="17sp" />
-
-        <TextView
-        android:id="@+id/para1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/article1"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="10dp"
-        android:text="@string/Parrafo1"
-            android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="50dp"
+        android:text="Accept terms and conditions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView"
+        app:layout_constraintVertical_bias="0.506"
+        tools:ignore="MissingConstraints"></Button>
 
-        <Button
-            android:id="@+id/btnAceptar"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="10dp">
+
+        <TextView
+            android:id="@+id/article1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Aceptar terminos y condiciones"
-            android:textColor="@color/black">
-        </Button>
+            android:layout_below="@+id/termsTitle"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/para1"
+            android:layout_width="match_parent"
+            android:layout_height="498dp"
+            android:layout_below="@+id/article1"
+            android:layout_marginTop="10dp"
+            android:text="@string/Parrafo1"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </com.google.android.material.card.MaterialCardView>
 
 
-    </RelativeLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
