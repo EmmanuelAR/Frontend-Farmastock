@@ -86,5 +86,8 @@
         <action
             android:id="@+id/action_reminderAddFragment_to_medicineSelectFragment"
             app:destination="@id/medicineSelectFragment" />
+        <action
+            android:id="@+id/action_reminderAddFragment_to_reminderMainFragment"
+            app:destination="@id/reminderMainFragment" />
     </fragment>
 </navigation>

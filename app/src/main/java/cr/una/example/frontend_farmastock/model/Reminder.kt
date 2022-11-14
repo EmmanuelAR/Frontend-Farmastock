@@ -11,7 +11,7 @@ data class ReminderResponse(
 )
 data class ReminderRequest(
     var id: Long? = null,
-    var createDate: Date? = null, // Date(year: Int, month: Int, day: Int, hour: Int, minute: Int)
+    var createDate: String? = null, // Date(year: Int, month: Int, day: Int, hour: Int, minute: Int)
     var description: String? = null,
     var user: UserResponse? = null,
     var medicine: MedicineResponse? = null

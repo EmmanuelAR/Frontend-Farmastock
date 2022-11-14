@@ -2,40 +2,29 @@ package cr.una.example.frontend_farmastock.view
 
 
 import android.app.*
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import java.util.*
-import android.graphics.Color
 import android.icu.text.SimpleDateFormat
-import android.net.ConnectivityManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.google.android.material.datepicker.MaterialDatePicker
 import cr.una.example.frontend_farmastock.R
 import cr.una.example.frontend_farmastock.adapter.MedicineAdapter
-import cr.una.example.frontend_farmastock.adapter.MedicineSelectAdapter
 import cr.una.example.frontend_farmastock.databinding.FragmentReminderAddBinding
 import cr.una.example.frontend_farmastock.model.MedicineResponse
-import cr.una.example.frontend_farmastock.utils.channelID
-import cr.una.example.frontend_farmastock.utils.messageExtra
-import cr.una.example.frontend_farmastock.utils.notificationID
-import cr.una.example.frontend_farmastock.utils.titleExtra
-import cr.una.example.frontend_farmastock.viewmodel.MedicineViewModel
-import cr.una.example.frontend_farmastock.viewmodel.MedicineViewModelFactory
-import cr.una.example.frontend_farmastock.viewmodel.ReminderViewModel
-import cr.una.example.frontend_farmastock.viewmodel.StateMedicine
+import cr.una.example.frontend_farmastock.model.ReminderRequest
+import cr.una.example.frontend_farmastock.model.UserResponse
+import cr.una.example.frontend_farmastock.utils.*
 import cr.una.example.frontend_farmastock.utils.Notification
+import cr.una.example.frontend_farmastock.viewmodel.*
 
 
 class ReminderAddFragment : Fragment() {
@@ -57,7 +46,6 @@ class ReminderAddFragment : Fragment() {
     ): View? {
         _binding = FragmentReminderAddBinding.inflate(inflater, container, false)
 
-
         if(!(activity as MainActivity)!!.specificDate.isEmpty()){
             specificDate = (activity as MainActivity)!!.specificDate
             binding.AlarmDescription.text = "On $specificDate"
@@ -71,7 +59,6 @@ class ReminderAddFragment : Fragment() {
         // MEDICINE SELECT
         val medicineId: String = arguments?.getString(MedicineAdapter.MEDICINE_ID) ?: "0"
         if(medicineId!="0") medicineViewModel.getMedicine(medicineId.toLong())
-
         medicineViewModel.state.observe(viewLifecycleOwner) { state ->
             with(binding.root) {
                 when (state) {
@@ -88,16 +75,11 @@ class ReminderAddFragment : Fragment() {
                 }
             }
         }
-
         createNotificationChannel()
-        binding.Save.setOnClickListener {
-            if(validate()) scheduleSpecificDateNotification()
-        }
         return binding.root
     }
 
     private fun scheduleSpecificDateNotification() {
-
         val alarmManager = context!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, Notification::class.java)
         intent.action = "MyBroadcastReceiverAction"
@@ -118,7 +100,40 @@ class ReminderAddFragment : Fragment() {
                 pendingIntent
             )
         }
+        //Create reminder to store
+        val medicineSelected: MedicineResponse = MedicineResponse(0)
+        val userInApp : UserResponse = UserResponse()
+        var id = MyApplication.sessionManager?.fetchUserIdLogged()
+        val minute = binding.timePicker.minute
+        val hour = if (binding.timePicker.hour > 10) binding.timePicker.hour else "0"+ binding.timePicker.hour.toString()
+        val date = specificDate.split("-")
+        val day = Integer.parseInt(date[0])
+        val month = Integer.parseInt(date[1])
+        val year = Integer.parseInt(date[2])
+        val text = "${year}-${month}-${day}T${hour}:${minute}:00.000+00:00"
+        if (id != null) userInApp.id=id
+        medicineViewModel.state.observe(viewLifecycleOwner) { state ->
+            with(binding.root) {
+                when (state) {
+                    is StateMedicine.Success -> {
+                        state.medicine?.let {
+                            medicineSelected.id= it.id
+                        }
+                    }
+                }
+            }
+        }
+        reminderViewModel.createReminder(
+            ReminderRequest(
+                description = binding.AddReminderDescription.text.toString(),
+                medicine = medicineSelected,
+                user = userInApp,
+                createDate = text
+            )
+        )
         Toast.makeText(activity,"Reminder created successfully.", Toast.LENGTH_SHORT).show();
+
+
     }
 
     private fun getTime(): Long {
@@ -150,6 +165,14 @@ class ReminderAddFragment : Fragment() {
         binding.buttonPickMedicine.setOnClickListener{
             (activity as MainActivity)!!.specificDate = specificDate
             Navigation.findNavController(view).navigate(R.id.action_reminderAddFragment_to_medicineSelectFragment)
+        }
+
+        binding.Save.setOnClickListener {
+            if(validate()){
+                scheduleSpecificDateNotification()
+                Navigation.findNavController(view).navigate(R.id.action_reminderAddFragment_to_reminderMainFragment)
+            }
+
         }
     }
 
