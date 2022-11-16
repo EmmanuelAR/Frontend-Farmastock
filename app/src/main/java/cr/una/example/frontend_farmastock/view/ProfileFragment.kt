@@ -76,26 +76,39 @@ class ProfileFragment : Fragment() {
                 firstName = binding.formProfileFirst.text.toString(),
                 lastName =binding.formProfileLast.text.toString()
             )
-
-            userViewModel.updateUser(userUpdated)
-            userViewModel.state.observe(viewLifecycleOwner) { state ->
-                when (state) {
-                    // just checking equality because Loading is a -singleton object instance-
-                    StateUser.Loading -> {
-                        // TODO: If you need do something in loading
-                        Toast.makeText(getActivity(), "Updating User Profile ...", Toast.LENGTH_SHORT).show();
-                    }
-                    // Error and Success are both -classes- so we need to check their type with 'is'
-                    is StateUser.Error -> {
-                        // TODO: If you need do something in error
-                        Toast.makeText(getActivity(), "Oops! Something went wrong, User Profile not Updated!", Toast.LENGTH_SHORT).show();
-                    }
-                    is StateUser.Success -> {
+            if (validateBlankSpaces(userUpdated)) {
+                userViewModel.updateUser(userUpdated)
+                userViewModel.state.observe(viewLifecycleOwner) { state ->
+                    when (state) {
+                        // just checking equality because Loading is a -singleton object instance-
+                        StateUser.Loading -> {
+                            // TODO: If you need do something in loading
+                            Toast.makeText(
+                                getActivity(),
+                                "Updating User Profile ...",
+                                Toast.LENGTH_SHORT
+                            ).show();
+                        }
+                        // Error and Success are both -classes- so we need to check their type with 'is'
+                        is StateUser.Error -> {
+                            // TODO: If you need do something in error
+                            Toast.makeText(
+                                getActivity(),
+                                "Oops! Something went wrong, User Profile not Updated!",
+                                Toast.LENGTH_SHORT
+                            ).show();
+                        }
+                        is StateUser.Success -> {
 //                        findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
-                        Toast.makeText(getActivity(), "User Profile Updated Successfully!", Toast.LENGTH_SHORT).show();
-                    }
-                    else -> {
-                        // TODO: Not state loaded
+                            Toast.makeText(
+                                getActivity(),
+                                "User Profile Updated Successfully!",
+                                Toast.LENGTH_SHORT
+                            ).show();
+                        }
+                        else -> {
+                            // TODO: Not state loaded
+                        }
                     }
                 }
             }
@@ -103,6 +116,22 @@ class ProfileFragment : Fragment() {
 
 
         return binding.root
+    }
+    fun validateBlankSpaces(userRequest:UserRequest):Boolean{
+        if(userRequest.email?.isEmpty() == true){
+                binding.formProfileEmail.setError("Email cannot be empty! ")
+                return false
+        }
+        if(userRequest.firstName?.isEmpty() == true){
+            binding.formProfileFirst.setError("First Name cannot be empty! ")
+            return false
+        }
+        if(userRequest.lastName?.isEmpty() == true){
+            binding.formProfileLast.setError("Last name cannot be empty! ")
+            return false
+        }
+
+        return true
     }
 
 }
